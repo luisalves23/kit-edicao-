@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<!-- MODELO DO @cobaia.dev (HyperFrames). Copie esta pasta para videos/fonte/diaNN/ e troque só o miolo das estações.
+     Fundo, cabeçalho, barra, legenda, calendário, contador, carimbo, telas e chamada final vêm da biblioteca (assets/kit, assets/telas.js).
+     Antes de criar qualquer peça nova, procure em /mnt/project-files/telas/CATALOGO.md. -->
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/telas.js"></script>
+<script src="data.js"></script>
+<link rel="stylesheet" href="assets/fonts.css" />
+<link rel="stylesheet" href="assets/kit/liquid-glass.css" />
+<link rel="stylesheet" href="assets/kit/kit.css" />
+<style>
+/* só o CSS das peças NOVAS deste vídeo. Ficou bom e dá pra reaproveitar? Leve para a biblioteca no fim. */
+#g1 { top:330px; font-size:150px; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="17.0" data-width="1080" data-height="1920">
+  <!-- uma .st por estação, na ordem do storyboard; o kit põe cada uma lado a lado em #cam -->
+  <div class="st" id="e0"><div class="ttl" id="g1"><span class="w">EXEMPLO</span><span class="w">DE</span><span class="w red">GANCHO</span></div></div>
+  <div class="st" id="e1"></div>
+  <div class="st" id="e2"></div>
+  <div class="st" id="e3"></div>
+  <div class="st" id="e4"></div>
+</div>
+<script src="assets/kit/liquid-glass.js"></script>
+<script src="assets/kit/kit.js"></script>
+<script>
+const k = KIT.montar({ dia: 6, estacoes: 5 }), L = k.tl, T = k.T, E = k.E;
+
+/* estações: a câmera passa ~0,15 s antes da primeira palavra de cada bloco */
+const ST = [0, T(4) - .15, T(11) - .15, T(18) - .15, T(22) - .15];
+KIT.camera(k, ST);
+
+/* E0 · gancho tipográfico desde o frame 0 (sem fade do preto); legenda escondida (HIDE) */
+KIT.blurIn(L, '#g1 .w', 0, .25); KIT.ev('bass_drop', 0, -8); KIT.ev('impact', T(2), -8);
+
+/* E1 · vinheta "Dia X de 30", logo depois do gancho */
+KIT.calendario(k, { est: 1, t: T(4), tTrinta: T(7), tClaude: T(10) });
+
+/* E2 · tela do Claude da biblioteca: entra girada, cursor guia, digitação no ritmo da fala */
+const cc = KIT.tela(k, { em: '#e2', nome: 'claude-chat', id: 'cc', w: 1000, h: 700 });
+cc.entra(500, 420, 1.2, ST[2] + .05);
+const pTxt = cc.P('.cc-input', -180, 0); cc.cursorPara([pTxt[0], pTxt[1] + 30], ST[2] + .2, .01);
+L.set('#cc .cc-input .ph', { display: 'none' }, T(12));
+KIT.typeIn(L, '#cc .cc-input .txt', 'Organiza a minha semana', T(12), E(17) - T(12)); KIT.teclas(T(12), E(17) - T(12), 22);
+cc.foco(pTxt[0] + 180, pTxt[1], 1.8, T(13));
+const pSend = cc.P('.cc-send'); cc.cursorPara(pSend, E(17) - .3, .3); cc.clique(E(17) + .02);
+KIT.semLegenda(k, 12, 17);
+
+/* E3 · número exagerado: contador gigante + carimbo */
+KIT.contador(k, { em: '#e3', ate: 19000, t: T(18) - .05, d: .9, mais: true, rotulo: 'E-MAILS', y: 120 });
+KIT.carimbo(k, { em: '#e3', texto: 'PRONTOS', x: 540, y: 700, t: T(21) });
+
+/* E4 · chamada final padrão (Dia 3) */
+KIT.cta(k, { est: 4, palavra: 'TESTE',
+  t: { quer: T(22), sobre: T(25), claude: T(27), segue: T(28), seguiu: T(30), curte: T(31), comenta: T(33), palavra: T(34), palavraFim: E(34), mando: T(38), fim: 16.35 },
+  dm: { texto: 'Toma o guia que eu prometi 👇', itens: [{ ic: '📘', titulo: 'Guia do dia', sub: 'cobaia-dev.vercel.app/teste', botao: 'Abrir' }] } });
+
+/* loop: o último quadro emenda no primeiro */
+KIT.loop(k, 16.72);
+KIT.fechar(k);
+</script>
+</body>
+</html>

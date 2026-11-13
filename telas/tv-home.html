@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Tela · TV inicial</title>
+<link rel="stylesheet" href="fonts.css">
+<style data-tela="tv-home">
+/* ===== Tela inicial de smart TV (genérica, estilo Android/Google TV), 1280x720 =====
+   Só a tela, sem moldura de TV. Nunca réplica de marca: blocos de app genéricos.
+   Estados: data-state="ads" (de fábrica: banner de anúncio, apps patrocinados, selos "Patrocinado")
+            | "clean" (tela inicial nova, escura e leve, com cartões de vidro)
+   Slots: [data-slot=hora] [data-slot=ad-title] [data-slot=ad-sub] [data-slot=ram]
+   Peças para animar: .tv-ad (banner), .tv-sp (cada app patrocinado), .tv-badge (selos), .tv-cl .tv-app (apps da tela nova) */
+.t-tv{position:relative;width:1280px;height:720px;border-radius:14px;overflow:hidden;background:#0d0f14;font-family:Inter,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+.t-tv .tv-top{position:absolute;left:48px;right:48px;top:26px;height:44px;display:flex;align-items:center;gap:22px;font:600 19px Inter;z-index:3}
+.t-tv .tv-top .tab{opacity:.62}.t-tv .tv-top .tab.on{opacity:1;background:rgba(255,255,255,.14);padding:7px 16px;border-radius:22px}
+.t-tv .tv-top .sp{flex:1}
+.t-tv .tv-top .hora{font:600 20px Inter;opacity:.85}
+/* --- de fábrica --- */
+.t-tv .tv-ads{position:absolute;inset:0}
+.t-tv .tv-ad{position:absolute;left:48px;right:48px;top:86px;height:300px;border-radius:16px;overflow:hidden;
+  background:radial-gradient(80% 120% at 85% 30%,#ffb02e 0%,rgba(255,176,46,0) 55%),linear-gradient(110deg,#3a0d5c 0%,#8a1b5a 45%,#e2452b 100%)}
+.t-tv .tv-ad .txt{position:absolute;left:40px;top:58px;width:640px}
+.t-tv .tv-ad h3{margin:0;font:900 52px/1.02 Inter;letter-spacing:-1px}
+.t-tv .tv-ad p{margin:12px 0 0;font:500 20px Inter;opacity:.85}
+.t-tv .tv-ad .cta{display:inline-block;margin-top:22px;background:#fff;color:#111;font:700 18px Inter;padding:11px 24px;border-radius:24px}
+.t-tv .tv-ad .prod{position:absolute;right:70px;top:46px;width:230px;height:210px;border-radius:24px;background:linear-gradient(160deg,#fff4d6,#ffc65a);transform:rotate(-8deg);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.t-tv .tv-badge{position:absolute;font:700 13px Inter;letter-spacing:.3px;background:#ffd400;color:#111;padding:4px 9px;border-radius:5px;text-transform:uppercase}
+.t-tv .tv-ad .tv-badge{left:40px;top:22px}
+.t-tv .tv-row-t{position:absolute;left:48px;font:700 19px Inter;opacity:.9}
+.t-tv .tv-row{position:absolute;left:48px;right:0;display:flex;gap:18px}
+.t-tv .tv-sp{position:relative;flex:none;width:214px;height:120px;border-radius:12px;display:flex;align-items:flex-end;padding:12px 14px;box-sizing:border-box;font:800 21px Inter;letter-spacing:-.3px}
+.t-tv .tv-sp .tv-badge{left:10px;top:10px;font-size:11px;padding:3px 7px}
+.t-tv .c1{background:linear-gradient(135deg,#d91f2a,#7a0a12)}.t-tv .c2{background:linear-gradient(135deg,#1f6fd9,#0a2c7a)}
+.t-tv .c3{background:linear-gradient(135deg,#19a65a,#0a5a2e)}.t-tv .c4{background:linear-gradient(135deg,#f08a00,#8a3c00)}
+.t-tv .c5{background:linear-gradient(135deg,#7b2ff2,#3a0f7a)}.t-tv .c6{background:linear-gradient(135deg,#00a6b5,#00505a)}
+.t-tv .c7{background:linear-gradient(135deg,#e2457a,#7a0f35)}.t-tv .c8{background:linear-gradient(135deg,#5a5f6b,#25282f)}
+/* --- tela nova (limpa) --- */
+.t-tv .tv-cl{position:absolute;inset:0;display:none;background:
+  radial-gradient(60% 70% at 18% 100%,rgba(255,45,45,.22),rgba(255,45,45,0) 70%),
+  radial-gradient(50% 60% at 95% 0%,rgba(242,238,230,.10),rgba(242,238,230,0) 70%),#0a0a0b}
+.t-tv .tv-cl .rel{position:absolute;left:72px;top:150px;font:200 150px/1 Inter;letter-spacing:-6px;color:#F2EEE6}
+.t-tv .tv-cl .dt{position:absolute;left:80px;top:318px;font:500 24px Inter;color:rgba(242,238,230,.7)}
+.t-tv .tv-cl .apps{position:absolute;left:72px;right:72px;top:430px;display:flex;gap:26px}
+.t-tv .tv-app{flex:1;height:170px;border-radius:26px;position:relative;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),inset 0 1px 0 rgba(255,255,255,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:600 20px Inter;color:#F2EEE6}
+.t-tv .tv-app .g{width:62px;height:62px;border-radius:18px}
+.t-tv .tv-app.on{box-shadow:inset 0 0 0 3px #F2EEE6;transform:scale(1.06)}
+.t-tv .tv-cl .ram{position:absolute;right:72px;top:40px;font:700 17px 'JetBrains Mono',monospace;color:rgba(242,238,230,.75);background:rgba(255,255,255,.07);padding:8px 14px;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.t-tv[data-state="clean"] .tv-ads,.t-tv[data-state="clean"] .tv-top{display:none}
+.t-tv[data-state="clean"] .tv-cl{display:block}
+</style>
+</head><body style="margin:0;background:#222;padding:30px">
+<!--tela-->
+<div class="t-tv" data-state="ads">
+  <div class="tv-top"><span class="tab on">Para você</span><span class="tab">Filmes</span><span class="tab">Séries</span><span class="tab">Apps</span><span class="sp"></span><span class="hora" data-slot="hora">20:41</span></div>
+  <div class="tv-ads">
+    <div class="tv-ad"><span class="tv-badge">Patrocinado</span>
+      <div class="txt"><h3 data-slot="ad-title">Mega ofertas de fim de ano</h3><p data-slot="ad-sub">Compre agora, parcele em 12x</p><span class="cta">Saiba mais</span></div>
+      <div class="prod"></div></div>
+    <div class="tv-row-t" style="top:406px">Apps em destaque</div>
+    <div class="tv-row" style="top:440px">
+      <div class="tv-sp c1"><span class="tv-badge">Patrocinado</span>Cinema+</div>
+      <div class="tv-sp c2"><span class="tv-badge">Patrocinado</span>Loja TV</div>
+      <div class="tv-sp c3"><span class="tv-badge">Patrocinado</span>Apostas</div>
+      <div class="tv-sp c4"><span class="tv-badge">Patrocinado</span>Jogos Grátis</div>
+      <div class="tv-sp c5"><span class="tv-badge">Patrocinado</span>Canal Shop</div>
+    </div>
+    <div class="tv-row-t" style="top:582px">Recomendado</div>
+    <div class="tv-row" style="top:616px">
+      <div class="tv-sp c6"></div><div class="tv-sp c7"></div><div class="tv-sp c8"></div><div class="tv-sp c2"></div><div class="tv-sp c4"></div>
+    </div>
+  </div>
+  <div class="tv-cl">
+    <div class="ram" data-slot="ram" style="display:none"></div>
+    <div class="rel" data-slot="hora">20:41</div>
+    <div class="dt">quinta, 12 de novembro</div>
+    <div class="apps">
+      <div class="tv-app on"><div class="g" style="background:linear-gradient(135deg,#d91f2a,#7a0a12)"></div>Filmes</div>
+      <div class="tv-app"><div class="g" style="background:linear-gradient(135deg,#F2EEE6,#9a968f)"></div>Vídeos</div>
+      <div class="tv-app"><div class="g" style="background:linear-gradient(135deg,#3a3a40,#16161a)"></div>Música</div>
+      <div class="tv-app"><div class="g" style="background:linear-gradient(135deg,#5a5f6b,#25282f)"></div>Ajustes</div>
+    </div>
+  </div>
+</div>
+<!--/tela-->
+</body></html>

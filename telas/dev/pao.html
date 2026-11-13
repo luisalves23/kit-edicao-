@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset=utf-8><style>body{margin:0;background:#222}canvas{width:540px;height:540px}</style>
+<script src="../js/three.min.js"></script><script src="../js/g3d.js"></script></head><body>
+<canvas id=a width=1080 height=1080></canvas><canvas id=b width=1080 height=1080></canvas><canvas id=c width=1080 height=1080></canvas>
+<script>
+window.READY=false;const T=THREE;
+function bread(st,seed,x,y,z,s,ry=0,opts){const m=G3D.paoDeQueijo(seed,opts);m.scale.setScalar(s);m.position.set(x,y+s*0.62,z);m.rotation.y=ry;m.rotation.z=(seed%3-1)*.06;st.scene.add(m);return m;}
+// A: toalha xadrez + prato, 3/4 de cima
+{const st=G3D.stage({fov:30,key:2.6,keyColor:0xffe0b0,rim:1.2,rimColor:0xffb070,fill:.7});
+ const cl=new T.Mesh(new T.PlaneGeometry(30,30),new T.MeshStandardMaterial({map:(()=>{const t=G3D.gingham('#c8322c','#f7efe2',16);t.repeat.set(5,5);return t})(),roughness:.9}));cl.rotation.x=-Math.PI/2;cl.receiveShadow=true;st.scene.add(cl);
+ const pl=G3D.plate(2.5);st.scene.add(pl);
+ const P=[[0,0],[-1.05,.35],[1.05,.35],[-.55,-.8],[.6,-.85],[-.5,1.1],[.6,1.05]];P.forEach((p,i)=>bread(st,i+2,p[0],.12,p[1],.62+((i*7)%3)*.04,i));
+ bread(st,11,3.3,0,-.4,.6,1);bread(st,12,-3.4,0,.6,.6,2);
+ st.key.position.set(-5,9,4);st.look([0,6.2,6.4],[0,0,.2]);st.exposure=1.05;st.draw(a);}
+// B: pilha recortada (fundo transparente)
+{const st=G3D.stage({fov:24,key:2.8,keyColor:0xfff0d8,rim:2.2,rimColor:0xffd8a0,fill:.8});st.ground(0,.28);
+ const P=[[-1.25,0,.35],[0,0,.6],[1.25,0,.35],[-.65,0,-.75],[.65,0,-.75],[-.62,.62,-.25],[.62,.62,-.25],[0,1.2,-.55]];
+ P.forEach((p,i)=>{const m=bread(st,i+20,p[0],p[1]*0.95,p[2],.66,i*1.3);});
+ st.look([0,2.6,8.6],[0,.85,0]);st.draw(b);}
+// C: closeup em tábua, fundo escuro
+{const st=G3D.stage({fov:22,key:3.0,keyColor:0xffd9a8,rim:2.6,rimColor:0xffc080,fill:.35});
+ const bg=new T.Mesh(new T.PlaneGeometry(40,20),new T.MeshStandardMaterial({color:0x2a1a12,roughness:1}));bg.position.set(0,5,-8);st.scene.add(bg);
+ const tb=new T.Mesh(G3D.extrude(G3D.roundRect(7,3.6,.5),.3,.06,3),[new T.MeshStandardMaterial({map:G3D.woodTex(),roughness:.7}),new T.MeshStandardMaterial({color:0x6b3d1e,roughness:.8})]);tb.rotation.x=-Math.PI/2;tb.position.y=0;st.scene.add(tb);tb.receiveShadow=tb.castShadow=true;
+ const fl=new T.Mesh(new T.PlaneGeometry(40,40),new T.MeshStandardMaterial({color:0x3a2416,roughness:1}));fl.rotation.x=-Math.PI/2;fl.position.y=-.3;fl.receiveShadow=true;st.scene.add(fl);
+ bread(st,31,-1.1,.36,.3,.85,0);bread(st,32,.75,.36,.1,.9,1);bread(st,33,-.1,.36,-1.0,.8,2);bread(st,34,2.3,.36,-.7,.75,3);bread(st,35,1.9,.36,1.2,.7,4);
+ st.key.position.set(-6,6,3);st.look([0.6,7.2,6.2],[0.4,.2,-.4]);st.draw(c);}
+window.OUT=[a,b,c].map(x=>x.toDataURL('image/png'));window.READY=true;
+</script></body></html>

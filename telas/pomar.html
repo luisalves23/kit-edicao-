@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Tela · Pomar (sistema estilo desktop, Dia 6)</title>
+<link rel="stylesheet" href="fonts.css">
+<style data-tela="pomar">
+.pm { position:absolute; inset:0; overflow:hidden; font-family:Inter; color:#1d1d1f; background:#000; }
+.pm .ly { position:absolute; inset:0; }
+.pm-desk { background:url(img/pomar-ondas.jpg) center/cover; }
+.pm-bar { position:absolute; left:0; top:0; width:848px; height:19px; display:flex; align-items:center; gap:14px; padding:0 12px; font:500 9.5px Inter; color:#1d1d1f;
+  background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.42)); box-shadow:inset 0 -1px 0 rgba(255,255,255,.6),0 1px 6px rgba(0,0,0,.08); }
+.pm-bar b { font-weight:800; } .pm-bar .sp { flex:1; }
+.pm-bar .ramc { padding:1px 7px; border-radius:6px; font:800 9px Mono; color:#1d1d1f; }
+.pm-bar svg { width:11px; height:11px; }
+.pm-dock { position:absolute; left:0; right:0; margin:0 auto; width:max-content; bottom:7px; display:flex; gap:7px; padding:6px 8px; border-radius:15px;
+  background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.28)); box-shadow:inset 0 1px 1px rgba(255,255,255,.9),inset 0 -1px 1px rgba(255,255,255,.3),0 6px 20px rgba(0,0,0,.18); }
+.pm-dock .di { width:30px; height:30px; border-radius:8px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 5px rgba(0,0,0,.18); }
+.pm-dock .di img { width:100%; height:100%; display:block; }
+.pm-dock .di svg { width:20px; height:20px; }
+.pw { position:absolute; border-radius:11px; overflow:hidden; box-shadow:0 18px 40px rgba(0,0,0,.35),0 0 0 .5px rgba(0,0,0,.25); }
+.pw .hd { height:22px; display:flex; align-items:center; gap:5px; padding:0 9px; font:700 9px Inter; }
+.pw .hd i { width:9px; height:9px; border-radius:50%; display:block; }
+.pw .hd i:nth-child(1){background:#ff5f57} .pw .hd i:nth-child(2){background:#febc2e} .pw .hd i:nth-child(3){background:#28c840}
+.pw .hd span { flex:1; text-align:center; margin-right:36px; }
+.pw-term { left:250px; top:110px; width:360px; height:210px; background:rgba(22,22,24,.92); color:#e8e8e8; }
+.pw-term .hd { color:#aaa; }
+.pw-term .ln { margin:6px 12px; height:7px; border-radius:4px; background:rgba(255,255,255,.18); }
+.pw-term .pr { margin:8px 12px; font:700 10px Mono; color:#9fe870; }
+.pw-term .pr b { display:inline-block; width:6px; height:11px; background:#e8e8e8; vertical-align:-2px; margin-left:3px; }
+.pw-aj { left:140px; top:70px; width:330px; height:250px; background:rgba(246,246,248,.96); }
+.pw-aj .sd { position:absolute; left:0; top:22px; width:96px; bottom:0; background:rgba(0,0,0,.04); padding:6px; }
+.pw-aj .sd div { height:15px; border-radius:5px; margin-bottom:5px; font:600 8px/15px Inter; padding-left:6px; color:#333; }
+.pw-aj .sd .on { background:#3b82f6; color:#fff; }
+.pw-aj .ct { position:absolute; left:106px; top:32px; right:12px; }
+.pw-aj .rw { height:28px; border-radius:7px; background:#fff; margin-bottom:6px; display:flex; align-items:center; justify-content:space-between; padding:0 9px; font:600 8.5px Inter; box-shadow:0 0 0 .5px rgba(0,0,0,.08); }
+.pw-aj .tg { width:22px; height:13px; border-radius:7px; background:#34c759; position:relative; } .pw-aj .tg::after { content:""; position:absolute; right:1.5px; top:1.5px; width:10px; height:10px; border-radius:50%; background:#fff; }
+.pw-cl { left:200px; top:46px; width:450px; height:300px; background:#262624; color:#e9e6dc; }
+.pw-cl .hd { color:#a8a49b; background:#1f1e1d; }
+.pw-cl .bub { position:absolute; right:16px; top:42px; max-width:300px; padding:8px 11px; border-radius:12px; background:#3a3936; font:500 10.5px Inter; opacity:0; }
+.pw-cl .rsp { position:absolute; left:16px; top:86px; width:390px; font:500 11px/1.45 SourceSerif, serif; color:#e9e6dc; opacity:0; }
+.pw-cl .rsp .ok { display:inline-flex; align-items:center; gap:5px; margin-top:6px; padding:4px 9px; border-radius:8px; background:rgba(255,255,255,.07); font:700 9.5px Inter; color:#e9e6dc; }
+.pw-cl .inp { position:absolute; left:16px; right:16px; bottom:14px; height:48px; border-radius:14px; background:#30302e; box-shadow:0 0 0 .5px rgba(255,255,255,.12); padding:9px 12px; font:500 10.5px Inter; color:#e9e6dc; }
+.pw-cl .inp .ph { color:#8b877e; }
+.pw-cl .snd { position:absolute; right:8px; bottom:7px; width:22px; height:22px; border-radius:7px; background:#c96442; }
+.pw-gr { left:470px; top:150px; width:300px; height:190px; background:rgba(250,250,252,.97); }
+.pw-gr .wv { position:absolute; left:16px; right:16px; top:42px; height:70px; display:flex; align-items:center; gap:3px; }
+.pw-gr .wv i { flex:1; border-radius:2px; background:#ff3b30; display:block; }
+.pw-gr .rec { position:absolute; left:50%; bottom:20px; transform:translateX(-50%); width:40px; height:40px; border-radius:50%; background:#fff; box-shadow:0 0 0 3px #ddd; }
+.pw-gr .rec::after { content:""; position:absolute; inset:7px; border-radius:50%; background:#ff3b30; }
+.pw-gr .tm { position:absolute; left:16px; bottom:30px; font:700 12px Mono; color:#333; }
+.pm-old { background:linear-gradient(160deg,#5c7e98,#34495e); }
+.pm-old .ico { position:absolute; width:46px; text-align:center; font:600 7px Inter; color:#fff; }
+.pm-old .ico i { display:block; width:30px; height:30px; margin:0 auto 3px; border-radius:6px; background:#dfe6ec; box-shadow:0 1px 3px rgba(0,0,0,.3); }
+.pm-old .pop { position:absolute; width:230px; padding:10px 12px; border-radius:4px; background:#eef0f2; box-shadow:0 6px 18px rgba(0,0,0,.4); font:700 9px Inter; color:#222; }
+.pm-old .pop span { display:block; font-weight:500; color:#555; margin-top:4px; }
+.pm-old .tb { position:absolute; left:0; right:0; bottom:0; height:26px; background:#1d2733; display:flex; align-items:center; gap:5px; padding:0 6px; }
+.pm-old .tb i { width:18px; height:18px; border-radius:3px; background:#4f6274; display:block; }
+.pm-old .br { position:absolute; left:250px; top:60px; width:400px; height:270px; background:#fff; border-radius:4px; box-shadow:0 8px 24px rgba(0,0,0,.4); }
+.pm-old .br .bh { height:22px; background:#d9dde1; font:600 8.5px/22px Inter; padding-left:8px; color:#333; }
+.pm-old .br .sp { position:absolute; left:50%; top:50%; width:34px; height:34px; margin:-17px; border-radius:50%; border:5px solid #ddd; border-top-color:#888; }
+.pm-old .br .nr { position:absolute; left:0; right:0; top:150px; text-align:center; font:600 10px Inter; color:#888; }
+.pm-boot { background:#000; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; }
+.pm-boot svg { width:54px; height:54px; }
+.pm-boot b { font:700 22px Inter; color:#f2f2f2; letter-spacing:.5px; }
+.pm-boot .bb { width:140px; height:4px; border-radius:2px; background:#333; overflow:hidden; }
+.pm-boot .bb i { display:block; height:100%; width:100%; background:#f2f2f2; transform-origin:0 50%; transform:scaleX(0); }
+.pm-glitch { background:repeating-linear-gradient(0deg,rgba(0,240,255,0) 0 7px,rgba(0,240,255,.55) 7px 9px,rgba(255,43,214,0) 9px 19px,rgba(255,43,214,.55) 19px 21px); mix-blend-mode:screen; opacity:0; }
+.pm .rgb { position:absolute; inset:0; z-index:60; pointer-events:none; opacity:0; mix-blend-mode:multiply; background:repeating-linear-gradient(90deg,rgba(255,60,60,.9) 0 1px,rgba(60,255,60,.9) 1px 2px,rgba(60,60,255,.9) 2px 3px),repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 1px,transparent 1px 3px); }
+</style></head>
+<body style="margin:0;background:#777;padding:30px">
+<div style="position:relative;width:848px;height:477px">
+<!--tela-->
+<div class="pm">
+  <div class="ly pm-old">
+    <div class="ico" style="left:14px;top:12px"><i></i>Documentos</div><div class="ico" style="left:14px;top:62px"><i></i>Loja</div><div class="ico" style="left:14px;top:112px"><i></i>Atualizador</div><div class="ico" style="left:14px;top:162px"><i></i>Ofertas</div><div class="ico" style="left:14px;top:212px"><i></i>Jogos</div><div class="ico" style="left:14px;top:262px"><i></i>Antivírus</div>
+    <div class="ico" style="left:64px;top:12px"><i></i>Músicas</div><div class="ico" style="left:64px;top:62px"><i></i>Backup</div><div class="ico" style="left:64px;top:112px"><i></i>Cupons</div><div class="ico" style="left:64px;top:162px"><i></i>Assistente</div>
+    <div class="br"><div class="bh">Navegador</div><div class="sp"></div><div class="nr">Não está respondendo...</div></div>
+    <div class="pop" style="left:600px;top:250px">147 atualizações pendentes<span>Reinicie para instalar.</span></div>
+    <div class="pop" style="left:560px;top:330px">Pouco espaço em disco<span>Libere espaço para continuar.</span></div>
+    <div class="tb"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="ly pm-boot"><svg viewBox="0 0 60 60"><path d="M30 6 C 48 12, 54 32, 44 48 C 36 56, 22 56, 16 48 C 8 34, 14 14, 30 6 Z" fill="#f2f2f2"/><path d="M30 12 C 28 26, 26 38, 22 50" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/></svg><b>Pomar</b><div class="bb"><i></i></div></div>
+  <div class="ly pm-desk">
+    <div class="pm-bar"><b>Pomar</b><span>Claude</span><span class="sp"></span><span class="ramc">RAM 400 MB</span>
+      <svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#1d1d1f"/></svg><svg viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0l-10 12z" fill="#1d1d1f"/></svg><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="19" rx="2" fill="#1d1d1f"/></svg><span>qua 11 nov 10:02</span></div>
+    <div class="pw pw-aj"><div class="hd"><i></i><i></i><i></i><span>Ajustes</span></div><div class="sd"><div class="on">Wi-Fi</div><div>Tela</div><div>Som</div><div>Bateria</div><div>Aparência</div><div>Dock</div></div><div class="ct"><div class="rw">Wi-Fi<div class="tg"></div></div><div class="rw">Rolagem natural<div class="tg"></div></div><div class="rw">Esconder o dock<div class="tg"></div></div></div></div>
+    <div class="pw pw-term"><div class="hd"><i></i><i></i><i></i><span>Terminal</span></div><div class="pr">~ $<b></b></div><div class="ln" style="width:70%"></div><div class="ln" style="width:45%"></div></div>
+    <div class="pw pw-cl"><div class="hd"><i></i><i></i><i></i><span>Claude</span></div><div class="bub"></div><div class="rsp rsp1">Pronto. Agora o dock some quando uma janela abre e volta quando o mouse encosta embaixo.<br><span class="ok">✓ Dock atualizado</span></div><div class="rsp rsp2">Fiz o Gravador pra você: grava pelo microfone e mostra o nível ao vivo.<br><span class="ok">✓ App Gravador criado</span></div><div class="inp"><span class="ph">Responder...</span><span class="txt"></span><div class="snd"></div></div></div>
+    <div class="pw pw-gr"><div class="hd" style="background:#f0f0f2"><i></i><i></i><i></i><span>Gravador</span></div><div class="wv"></div><div class="tm">00:04</div><div class="rec"></div></div>
+    <div class="pm-dock">
+      <div class="di" id="d-claude"><img src="assets/img/claude-icon.jpg" /></div>
+      <div class="di" style="background:#1f1e1d"><img src="assets/img/claudecode-color.svg" style="width:22px;height:22px" /></div>
+      <div class="di" style="background:linear-gradient(160deg,#4aa3ff,#1c5fd6)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="#fff" stroke-width="2"/><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16" fill="none" stroke="#fff" stroke-width="1.6"/></svg></div>
+      <div class="di" style="background:#ff2d2d"><svg viewBox="0 0 24 24"><path d="M9 7l8 5-8 5z" fill="#fff"/></svg></div>
+      <div class="di" style="background:linear-gradient(180deg,#e3e6ea,#b9c0c8)"><svg viewBox="0 0 24 24"><path d="M3 7h7l2 2h9v10H3z" fill="#7d8894"/></svg></div>
+      <div class="di" id="d-term" style="background:#1c1c1e"><svg viewBox="0 0 24 24"><path d="M5 8l4 4-4 4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17h7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+      <div class="di" style="background:#0a84ff"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="5.5" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M14 14l5 5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
+      <div class="di" id="d-grav" style="background:#1e3b2c"><svg viewBox="0 0 24 24"><path d="M3 12h3l2-6 3 12 3-9 2 5h5" fill="none" stroke="#5ef08c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="di" id="d-aj" style="background:linear-gradient(160deg,#9aa4ae,#5d6670)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+    </div>
+  </div>
+  <div class="ly pm-glitch"></div>
+  <div class="rgb"></div>
+</div>
+<!--/tela-->
+</div>
+</body></html>

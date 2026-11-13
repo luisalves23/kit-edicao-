@@ -1,0 +1,30 @@
+CRÉDITOS DE ÁUDIO DA BIBLIOTECA @cobaia.dev
+Mixkit (assets.mixkit.co), Mixkit Free License: uso em vídeo, redes sociais e uso comercial, sem atribuição obrigatória.
+Música: https://mixkit.co/license/#musicFree · Efeitos: https://mixkit.co/license/#sfxFree
+
+MÚSICAS (audio/musica)
+cat-walk-mixkit-371.mp3  Cat Walk, Arulo (Mixkit 371) https://assets.mixkit.co/music/371/371.mp3
+a-game-mixkit-777.mp3    A Game, Michael Ramir C. (Mixkit 777) https://assets.mixkit.co/music/777/777.mp3
+eletronica-130bpm-drop-mixkit-334.mp3  Mixkit 334 (título não exposto pelo servidor; 130 BPM, groove 15-43 s, breakdown 44-57 s, drop em 59,37 s) https://assets.mixkit.co/music/334/334.mp3
+ambiente-escuro-82bpm-mixkit-604.mp3   Mixkit 604 (título não exposto; ambiente escuro, para tensão e respiro) https://assets.mixkit.co/music/604/604.mp3
+eletronica-144bpm-sobe-mixkit-400.mp3  Mixkit 400 (título não exposto; ~144 BPM; intro escura 0-12 s, batida entra ~12 s, pico 52-62 s) https://assets.mixkit.co/music/400/400.mp3  (Dia 7)
+groove-136bpm-reto-mixkit-135.mp3      Mixkit 135 (título não exposto; ~136 BPM; groove grave e reto do começo ao fim, sem seções) https://assets.mixkit.co/music/135/135.mp3  (Dia 7)
+Onde achar faixas novas: https://assets.mixkit.co/music/<ID>/<ID>.mp3 baixa direto (IDs de ~100 a ~1300; as páginas do mixkit.co não abrem daqui).
+Para escolher sem ouvir, meça BPM e o perfil de volume (scripts/medir-musica.py) e anote aqui o mapa de seções.
+
+EFEITOS DO MIXKIT (audio/sfx). Arquivos vindos de videos/fonte/dia03/audio/sfx.
+Faixas do Mixkit registradas nos créditos dos Dias 3 e 5 (id entre parênteses): Futuristic bass hit (2303), Movie trailer epic impact (2908),
+Cool interface click tone (2568), Winning a coin, video game (2069), Correct answer tone (2870), Digital glitch break (2951),
+Bubble pop up alert notification (2357), Cartoon bubble pop (731), Magic wand sparkle (3062), Fast transitions swoosh (3115),
+Magic transition sweep presentation (2638), Fast whoosh transition (1490), Impact of a blow (2150), Long pop (2358),
+Positive notification (951), Cinematic trailer riser (790).
+Arquivos: bass_drop, boom, click, coin, ding, glitch, impact, notification, pop, pop2, riser, sparkle, swoosh2, whoosh, whoosh_up.
+Os créditos antigos não registraram qual id é cada arquivo. heart (batida de coração) foi sintetizado no Dia 3.
+shutter não aparece em nenhum crédito: não usar até conferir a origem.
+Daqui pra frente: todo efeito novo entra aqui com nome do arquivo, título, id e URL.
+
+SINTETIZADOS AQUI (numpy, sem arquivo de terceiros; scripts/sintetizar-sfx.py)
+key1-4, tick, buzz, unlock, scribble, swish, crackle, grilo, elastico, snip, caixa
+sub_drop, power_down, reverse_swell, glass_chime, bloom, air_send, tick_wood, data_chirp, thud_dark, shimmer_up, tape_whirl:
+  série 2 (Dia 6), scripts/sintetizar-sfx2.py, feitos para fugir dos whoosh e pops de sempre
+vidro1-3: sintetizado aqui (scripts/sintetizar-sfx.py), tiques de vidro do calendário (Dia 6 v2)

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Tela · Claude Configurações › Conectores</title>
+<link rel="stylesheet" href="fonts.css">
+<style data-tela="claude-conectores">
+/* ===== Claude › Configurações › Conectores, tela nativa 1000x700 =====
+   Slots: [data-slot=q] (texto da busca) · .cn-go (botão Conectar do Canva; classe .done = "Conectado")
+   Tema: data-theme light|dark (mesmos tokens do claude-chat) */
+.t-cn{--bg:#FAF9F5;--side:#F5F4EE;--ink:#141413;--ink2:#3D3D3A;--muted:#73726C;--line:rgba(31,30,29,.15);--box:#FFFFFF;--btn:#141413;--btnt:#FAF9F5;--hover:#EDEBE3;
+  position:relative;width:1000px;height:700px;overflow:hidden;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.t-cn[data-theme=dark]{--bg:#262624;--side:#1F1E1D;--ink:#F5F4EE;--ink2:#E5E3DA;--muted:#9C9A92;--line:rgba(222,220,209,.15);--box:#30302E;--btn:#F5F4EE;--btnt:#1F1E1D;--hover:#3A3936}
+.t-cn svg{display:block}
+.cn-rail{position:absolute;left:0;top:0;bottom:0;width:56px;background:var(--side);border-right:1px solid var(--line)}
+.cn-rail i{position:absolute;left:18px;width:20px;height:20px;border-radius:5px;border:1.5px solid #A3A198}
+.cn-rail .me{position:absolute;left:13px;bottom:14px;width:30px;height:30px;border-radius:50%;background:#3D3D3A;color:#fff;font:600 13px/30px Inter;text-align:center}
+.cn-h1{position:absolute;left:96px;top:40px;font:400 30px SourceSerif,Georgia,serif;letter-spacing:-.3px;color:var(--ink2)}
+.cn-nav{position:absolute;left:88px;top:104px;width:190px;display:flex;flex-direction:column;gap:2px}
+.cn-nav div{padding:8px 12px;border-radius:8px;font:400 14.5px Inter;color:var(--ink2)}
+.cn-nav div.on{background:var(--hover);font-weight:500;color:var(--ink)}
+.cn-body{position:absolute;left:310px;top:104px;width:620px}
+.cn-body h2{font:600 17px Inter;margin-bottom:6px}
+.cn-body p.d{font:400 14px/1.5 Inter;color:var(--muted);margin:0 0 18px}
+.cn-srch{display:flex;align-items:center;gap:10px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--box);padding:0 14px;font:400 15px Inter;color:var(--ink);margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.cn-srch svg{width:16px;height:16px;color:var(--muted)}
+.cn-srch .ph{color:var(--muted)}
+.cn-srch .caret{width:1.5px;height:18px;background:var(--ink);margin-left:-8px}
+.cn-list{border:1px solid var(--line);border-radius:12px;background:var(--box);overflow:hidden}
+.cn-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-top:1px solid var(--line)}
+.cn-row:first-child{border-top:0}
+.cn-row .lg{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:#fff;flex:none}
+.cn-row .lg img{width:28px;height:28px}
+.cn-row .nm{font:600 15px Inter}
+.cn-row .ds{font:400 13px/1.4 Inter;color:var(--muted);margin-top:2px}
+.cn-row .tx{flex:1}
+.cn-go{padding:8px 16px;border-radius:8px;background:var(--btn);color:var(--btnt);font:500 14px Inter;white-space:nowrap}
+.cn-go.done{background:transparent;color:#2f7d4f;border:1px solid rgba(47,125,79,.35)}
+.cn-sec{font:500 13px Inter;color:var(--muted);margin:22px 0 10px}
+.cn-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);font:500 13.5px Inter;color:var(--ink2);white-space:nowrap}
+.cn-tag i{width:7px;height:7px;border-radius:50%;background:#2f9e62}
+.cn-badge{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:6px;background:var(--hover);font:500 11px Inter;color:var(--muted);vertical-align:2px}
+</style></head>
+<body style="margin:0;background:#777;padding:30px">
+<!--tela-->
+<div class="t-cn" data-theme="light">
+  <div class="cn-rail"><i style="top:18px"></i><i style="top:62px;border-radius:50%"></i><i style="top:104px"></i><i style="top:146px"></i><div class="me">C</div></div>
+  <div class="cn-h1">Configurações</div>
+  <div class="cn-nav"><div>Geral</div><div>Conta</div><div>Privacidade</div><div>Cobrança</div><div>Uso</div><div>Capacidades</div><div class="on">Conectores</div><div>Claude Code</div></div>
+  <div class="cn-body">
+    <h2>Conectores</h2>
+    <p class="d">Permita que o Claude acesse seus apps e serviços para fazer mais por você.</p>
+    <div class="cn-srch"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span data-slot="q">Canva</span><span class="caret"></span></div>
+    <div class="cn-list">
+      <div class="cn-row"><div class="lg"><img src="img/canva.svg"></div><div class="tx"><div class="nm">Canva<span class="cn-badge">Interativo</span></div><div class="ds">Pesquise, crie, edite e exporte seus designs do Canva</div></div><div class="cn-go">Conectar</div></div>
+    </div>
+    <div class="cn-sec">Seus conectores</div>
+    <div class="cn-list">
+      <div class="cn-row"><div class="lg"><img src="img/google-gmail.svg"></div><div class="tx"><div class="nm">Gmail</div><div class="ds">Leia e organize seus e-mails</div></div><div class="cn-tag"><i></i>Conectado</div></div>
+      <div class="cn-row"><div class="lg"><img src="img/google-calendar.svg"></div><div class="tx"><div class="nm">Google Agenda</div><div class="ds">Veja e crie eventos</div></div><div class="cn-tag"><i></i>Conectado</div></div>
+    </div>
+  </div>
+</div>
+<!--/tela-->
+</body></html>

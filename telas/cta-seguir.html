@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Tela · CTA seguir, curtir, comentar</title>
+<link rel="stylesheet" href="fonts.css">
+<style data-tela="cta-seguir">
+/* ===== CTA padrão do canal (Dia 3, skill seção 7), 850x700 =====
+   Peças (cada uma aparece só quando é falada; a animação fica no vídeo):
+   .cta-av   avatar do perfil 330 px centralizado + .cta-plus (botão "+" vermelho; com .on vira ✓ branco)
+   .cta-fw   canvas 850x700 ATRÁS do avatar para os fogos/estouros (desenhado pelo vídeo)
+   .cta-heart coração 240 px: branco; com .on fica vermelho
+   .cta-field campo de comentário (use também a classe "glass in" quando a página carrega o liquid-glass oficial)
+              [data-slot=text] texto digitado · .cta-caret cursor · .cta-send botão de enviar (com .on fica vermelho)
+   Variáveis: --cta-red (vermelho da marca) */
+.t-cta{--cta-red:#FF2D2D;position:relative;width:850px;height:700px;font-family:Inter,sans-serif;color:#F2EEE6;-webkit-font-smoothing:antialiased}
+.t-cta .cta-fw{position:absolute;left:0;top:0;width:850px;height:700px}
+.t-cta .cta-av{position:absolute;left:260px;top:120px;width:330px;height:330px}
+.t-cta .cta-av img{width:330px;height:330px;border-radius:50%;display:block;box-shadow:0 0 0 8px #F2EEE6,0 30px 80px rgba(0,0,0,.6)}
+.t-cta .cta-plus{position:absolute;left:125px;bottom:-34px;width:80px;height:80px;border-radius:50%;background:var(--cta-red);box-shadow:0 0 0 7px #0c0c0c,0 10px 30px rgba(255,45,45,.5);display:flex;align-items:center;justify-content:center}
+.t-cta .cta-plus svg{position:absolute;width:40px;height:40px}
+.t-cta .cta-plus .ck{opacity:0}
+.t-cta .cta-plus.on{background:#F2EEE6}
+.t-cta .cta-plus.on .pl{opacity:0}
+.t-cta .cta-plus.on .ck{opacity:1}
+.t-cta .cta-heart{position:absolute;left:470px;top:150px;width:260px;height:240px}
+.t-cta .cta-heart svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 20px 40px rgba(0,0,0,.55))}
+.t-cta .cta-heart path{fill:#F2EEE6;transition:none}
+.t-cta .cta-heart.on path{fill:var(--cta-red)}
+.t-cta .cta-heart.on svg{filter:drop-shadow(0 0 40px rgba(255,45,45,.6)) drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+.t-cta .cta-field{position:absolute;left:0;top:250px;width:850px;height:150px;border-radius:75px;display:flex;align-items:center;padding:0 24px 0 56px;gap:8px;
+  background:rgba(242,238,230,.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 24px 60px rgba(0,0,0,.5);border:1.5px solid rgba(255,255,255,.18)}
+.t-cta .cta-field .tx{font:800 64px Inter;letter-spacing:1px;white-space:nowrap}
+.t-cta .cta-field .ph{font:600 40px Inter;color:rgba(242,238,230,.45);white-space:nowrap}
+.t-cta .cta-caret{width:5px;height:66px;border-radius:3px;background:var(--cta-red)}
+.t-cta .cta-send{margin-left:auto;width:104px;height:104px;border-radius:50%;background:rgba(242,238,230,.14);display:flex;align-items:center;justify-content:center}
+.t-cta .cta-send svg{width:46px;height:46px}
+.t-cta .cta-send.on{background:var(--cta-red);box-shadow:0 0 30px rgba(255,45,45,.6)}
+</style></head>
+<body style="margin:0;background:#0c0c0c;padding:30px">
+<!--tela-->
+<div class="t-cta">
+  <canvas class="cta-fw" width="850" height="700"></canvas>
+  <div class="cta-av"><img src="img/avatar.jpg"><div class="cta-plus">
+    <svg class="pl" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"><path d="M20 8v24M8 20h24"/></svg>
+    <svg class="ck" viewBox="0 0 40 40" fill="none" stroke="#FF2D2D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21l7 7 15-16"/></svg></div></div>
+  <div class="cta-heart"><svg viewBox="0 0 260 240"><path d="M130 228C58 172 8 128 8 74 8 36 38 10 74 10c24 0 42 12 56 32 14-20 32-32 56-32 36 0 66 26 66 64 0 54-50 98-122 154z"/></svg></div>
+  <div class="cta-field glass in"><span class="ph">Adicione um comentário...</span><span class="tx" data-slot="text"></span><span class="cta-caret"></span>
+    <div class="cta-send"><svg viewBox="0 0 46 46" fill="#fff"><path d="M6 21 40 6 26 40l-5-14z"/></svg></div></div>
+</div>
+<!--/tela-->
+</body></html>

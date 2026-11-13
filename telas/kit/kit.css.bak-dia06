@@ -1,0 +1,135 @@
+/* KIT DE IDENTIDADE · @cobaia.dev · série "30 dias, 30 experimentos com Claude"
+   Fonte única do visual aprovado (base: Dia 4 v4). Não copie este CSS para dentro do vídeo:
+   inclua o arquivo (assets/kit/kit.css) e use as classes. Mudou a identidade? Mude AQUI.
+   Requer fonts.css (Anton, Inter, Serif = Instrument Serif itálico, Mono = JetBrains Mono, Marker). */
+
+/* ---------- 1. tokens ---------- */
+:root { --bk:#0c0c0c; --ow:#F2EEE6; --rd:#FF2D2D; --or:#D97757; --gr:#22C55E; }
+/* --or (laranja do Claude) só no ícone do Claude e no brilho dele. --gr só em "grátis"/dinheiro. */
+
+/* ---------- 2. palco 1080x1920 ---------- */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:var(--bk); }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; font-family:Inter; color:var(--ow);
+  background:radial-gradient(ellipse at 48% 38%, #191919 0%, #0c0c0c 72%); }
+.abs { position:absolute; }
+.red { color:var(--rd); }
+
+/* fundo: grade de pontos rolando, 2 blobs, vinheta, grão muito leve */
+#dots { inset:-60px; background:radial-gradient(rgba(242,238,230,.10) 2px, transparent 2.6px); background-size:60px 60px; }
+.blob { border-radius:50%; filter:blur(110px); }
+#b1 { width:620px; height:620px; left:-120px; top:520px; background:rgba(255,45,45,.20); }
+#b2 { width:520px; height:520px; left:620px; top:1100px; background:rgba(242,238,230,.07); }
+#vig { inset:0; pointer-events:none; background:radial-gradient(ellipse at 50% 45%, transparent 56%, rgba(0,0,0,.62) 100%); }
+#grain { inset:0; opacity:.03; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* ---------- 3. cabeçalho (margem própria: o conteúdo nasce em y >= 340) ---------- */
+#track { left:90px; top:212px; width:850px; height:12px; border-radius:6px; background:rgba(242,238,230,.13); }
+#fill  { left:90px; top:212px; width:850px; height:12px; border-radius:6px; background:var(--rd); box-shadow:0 0 18px rgba(255,45,45,.5); transform-origin:0 50%; }
+#badge { left:90px; top:246px; font:40px Anton; background:var(--rd); color:var(--ow); padding:4px 18px 2px; border-radius:40px; }
+#handle { right:140px; top:253px; font:700 30px Mono; color:#bdbdbd; }
+
+/* ---------- 4. legenda (sutil; some quando o texto já está na tela) ---------- */
+#cap { left:90px; width:850px; top:1452px; text-align:center; font:800 46px/1.3 Inter; }
+#cap .cw { display:inline-block; margin:0 4px; padding:0 3px; text-shadow:0 2px 12px rgba(0,0,0,.9); }
+
+/* ---------- 5. estações e câmera ---------- */
+/* área útil do conteúdo: x 90–940, y 340–1400. #vp recorta de y 330 a 1420. */
+#vp  { left:0; top:330px; width:1080px; height:1090px; overflow:hidden; }
+#cam { left:0; top:0; height:1090px; }                       /* largura = nº de estações x 1080 (KIT.montar ajusta) */
+.st  { position:absolute; top:0; width:1080px; height:1090px; overflow:hidden; }
+#fx  { left:0; top:330px; width:1080px; height:1090px; pointer-events:none; }  /* partículas: fica ANTES de #vp no DOM */
+
+/* ---------- 6. tipografia de cena ---------- */
+.ttl { position:absolute; left:90px; width:850px; text-align:center; font:96px/1 Anton; }            /* impacto, caixa alta */
+.ser { position:absolute; left:90px; width:850px; text-align:center; font:italic 74px/1.1 Serif; }   /* emoção e pergunta */
+.mono { font-family:Mono; font-weight:700; }
+.mrk { font-family:Marker; }                                                                           /* anotação à mão */
+.w { display:inline-block; margin:0 6px; }
+.cx { position:absolute; left:540px; }  /* centrado em x: KIT aplica xPercent/yPercent -50 */
+
+/* ---------- 7. componentes ---------- */
+/* ícone de app (Claude e amostras de cor) */
+.appic { border-radius:24%; position:relative; overflow:hidden; box-shadow:0 24px 60px rgba(217,119,87,.38),0 10px 24px rgba(0,0,0,.5); }
+.appic img { width:100%; height:100%; display:block; }
+.appic::after { content:""; position:absolute; inset:0; border-radius:inherit;
+  background:linear-gradient(160deg,rgba(255,255,255,.5),rgba(255,255,255,0) 42%),linear-gradient(0deg,rgba(255,255,255,.14),rgba(255,255,255,0) 24%);
+  box-shadow:inset 0 2px 2px rgba(255,255,255,.75),inset 0 -2px 4px rgba(0,0,0,.2),inset 0 0 0 1.5px rgba(255,255,255,.22); }
+
+/* carimbo gasto. Sobre papel/fundo claro use .stamp.ink */
+.stamp { font-family:Anton; color:var(--rd); border:12px solid var(--rd); border-radius:20px; padding:6px 34px 2px; white-space:nowrap; text-align:center; line-height:1;
+  mix-blend-mode:screen; -webkit-mask-size:300px 300px;
+  -webkit-mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='4' seed='7'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -5 0 0 0 3.3'/></filter><rect width='300' height='300' filter='url(%23f)'/></svg>"); }
+.stamp.ink { mix-blend-mode:normal; }
+
+/* pílula de rótulo */
+.chip { position:absolute; display:flex; align-items:center; gap:14px; padding:10px 26px; border-radius:40px; font:800 38px Inter; white-space:nowrap; z-index:20; }
+
+/* selo ✕ de "errado": sempre AO LADO do elemento, nunca por cima */
+.selox { position:absolute; width:110px; height:110px; border-radius:50%; background:var(--rd); box-shadow:0 12px 30px rgba(255,45,45,.45); }
+.selox svg { position:absolute; inset:0; }
+.selox path { stroke:#fff; stroke-width:12; stroke-linecap:round; fill:none; stroke-dasharray:60; stroke-dashoffset:60; }
+
+/* botão/selo de grátis */
+.gratis { background:var(--gr); color:#fff; font:900 40px Inter; padding:10px 30px; border-radius:40px; box-shadow:0 0 40px rgba(34,197,94,.5); }
+
+/* calendário dos 30 dias (vinheta) */
+.k-cal { position:absolute; left:0; top:0; width:1080px; height:1090px; }
+.k-cal .k-dia { top:80px; font-size:170px; }
+.k-cal .k-grid { position:absolute; left:165px; top:290px; width:700px; display:grid; grid-template-columns:repeat(6,1fr); gap:16px; z-index:3; }
+.k-cal .cell { height:100px; border-radius:20px; background:rgba(242,238,230,.08); font:700 30px Mono; color:#8a8a8a; display:flex; align-items:center; justify-content:center; }
+.k-cal .cell.done { background:rgba(242,238,230,.18); color:var(--ow); }
+.k-cal .cell.now { background:var(--rd); color:var(--ow); box-shadow:0 0 40px rgba(255,45,45,.6); }
+.k-cal .k-sub { position:absolute; left:90px; top:940px; width:850px; text-align:center; font:800 44px Inter; display:flex; justify-content:center; align-items:center; gap:16px; }
+.k-cal .k-sub .appic { width:64px; height:64px; }
+
+/* contador gigante (odômetro) para número exagerado */
+.k-odo { position:absolute; left:0; width:1080px; top:0; display:flex; justify-content:center; align-items:flex-start; font:230px/1 Anton; color:var(--ow); text-shadow:0 10px 40px rgba(0,0,0,.6); }
+.k-odo .oc { position:relative; width:.5em; height:1.2em; overflow:hidden; text-align:center; -webkit-mask-image:linear-gradient(transparent 4%,#000 22%,#000 78%,transparent 96%); mask-image:linear-gradient(transparent 4%,#000 22%,#000 78%,transparent 96%); }
+.k-odo .oc .sp { position:absolute; left:0; top:0; width:100%; }
+.k-odo .oc .sp div { height:1.2em; line-height:1.2em; }
+.k-odo .odot { width:.22em; text-align:center; }
+.k-odo .oplus { color:var(--rd); margin-left:.04em; text-shadow:0 0 40px rgba(255,45,45,.6); opacity:0; }
+.k-olab { position:absolute; left:0; width:1080px; top:290px; text-align:center; font:60px Anton; letter-spacing:10px; color:#8d8a84; }
+
+/* tela simulada: só o conteúdo, sem moldura. A tela inteira cresce e inclina até o ponto falado. */
+.sw   { position:absolute; left:0; top:0; transform-origin:0 0; }
+.tilt { position:absolute; inset:0; }
+.scr  { position:relative; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 30px 80px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.08); }
+.cur  { position:absolute; left:0; top:0; width:30px; height:42px; z-index:50; filter:drop-shadow(0 3px 5px rgba(0,0,0,.55)); }   /* cursor branco */
+
+/* ---------- 8. chamada final (padrão do Dia 3; não inventar outro formato) ---------- */
+.k-cta { position:absolute; left:0; top:0; width:1080px; height:1090px; }
+.k-qa1 { top:250px; font:104px/1 Anton; white-space:nowrap; }
+.k-qa2 { top:400px; font:104px/1 Anton; white-space:nowrap; display:flex; align-items:center; gap:22px; }
+.k-qa2 img { width:120px; height:120px; border-radius:30px; }
+.k-av { top:420px; width:330px; height:330px; }
+.k-av > img { width:330px; height:330px; border-radius:50%; display:block; box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 6px rgba(242,238,230,.9); }
+.k-apl { position:absolute; left:50%; bottom:-34px; width:84px; height:84px; margin-left:-42px; border-radius:50%; background:var(--rd); border:6px solid var(--bk); display:flex; align-items:center; justify-content:center; }
+.k-apl svg { position:absolute; width:40px; height:40px; }
+.k-ahd { top:650px; font:800 44px Inter; white-space:nowrap; }
+.k-hrt { position:absolute; left:785px; top:420px; width:250px; height:250px; }
+.k-cin { top:430px; width:850px; height:132px; border-radius:66px; display:flex; align-items:center; padding:0 22px 0 44px; gap:18px; }
+.k-cin.glass { position:absolute; }
+.k-cin .ph { font:700 40px Inter; color:rgba(242,238,230,.42); flex:1; white-space:nowrap; }
+.k-cin .tx { font:900 54px Inter; color:var(--ow); flex:1; white-space:nowrap; letter-spacing:2px; }
+.k-send { width:92px; height:92px; border-radius:50%; background:rgba(242,238,230,.18); display:flex; align-items:center; justify-content:center; flex:none; }
+.k-send svg { width:42px; height:42px; }
+.k-dm { top:430px; width:850px; height:640px; border-radius:40px; }
+.k-dm.glass { position:absolute; }
+.k-dmh { position:absolute; left:36px; top:30px; display:flex; align-items:center; gap:18px; }
+.k-dmh img { width:76px; height:76px; border-radius:50%; }
+.k-dmh b { font:900 36px Inter; color:var(--ow); }
+.k-dmh span { font:700 26px Inter; color:#8f8a82; display:block; margin-top:2px; }
+.k-dbub { position:absolute; left:36px; right:36px; top:136px; border-radius:30px 30px 30px 10px; background:rgba(242,238,230,.10); padding:24px 30px; font:700 38px/1.28 Inter; color:var(--ow); }
+.k-pcd { position:absolute; left:36px; right:36px; height:160px; border-radius:26px; background:#0f0f0f; border:2px solid #2c2c2c; display:flex; align-items:center; gap:22px; padding:0 26px; }
+.k-pcd .ic { width:92px; height:92px; border-radius:22px; background:rgba(255,45,45,.14); font:52px/92px Inter; text-align:center; flex:none; }
+.k-pcd b { font:900 34px Inter; color:var(--ow); display:block; white-space:nowrap; }
+.k-pcd span { font:700 24px Inter; color:#8f8a82; display:block; margin-top:6px; white-space:nowrap; }
+.k-pcd .cp { margin-left:auto; padding:12px 22px; border-radius:16px; background:var(--rd); font:900 26px Inter; color:#fff; flex:none; }
+.k-ce1 { top:330px; font:150px/1 Anton; white-space:nowrap; }
+.k-ce2 { top:540px; font:230px/1 Anton; color:var(--rd); white-space:nowrap; }
+
+/* ---------- 9. vidro em vídeo: a varredura de luz é animada pela timeline (KIT.vidro), nunca por transition ---------- */
+.glass::after { transition:none !important; background-position:0 0,0 0,0 0,0 0,var(--lgx,140%) 0 !important; }

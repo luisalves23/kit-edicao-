@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Tela · 3 posts da padaria (Instagram)</title>
+<link rel="stylesheet" href="fonts.css">
+<style data-tela="posts-padaria">
+/* ===== 3 posts de Instagram (1:1) da promoção "pão de queijo na sexta", nativo 540x540 cada =====
+   Fotos: img/pao-toalha.png, img/pao-pilha.png (recorte), img/pao-tabua.png (renders 3D do g3d.js)
+   .pp-a clássico aconchegante · .pp-b tipográfico amarelo (.claro = amarelo mais claro) · .pp-c editorial escuro
+   Use CSS zoom para mostrar maior (ex.: zoom:.5 = 270 px). */
+.pp{position:relative;width:540px;height:540px;overflow:hidden;font-family:Montserrat,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.pp img{display:block}
+.pp-logo{display:flex;align-items:center;gap:8px;font:800 11px Montserrat;letter-spacing:2.2px;text-transform:uppercase}
+.pp-logo i{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 italic 15px Playfair;letter-spacing:0}
+/* A */
+.pp-a{background:#FFF4E2}
+.pp-a .ph{position:absolute;left:0;top:0;width:540px;height:330px;overflow:hidden}
+.pp-a .ph img{width:540px;margin:-92px 0 0 0}
+.pp-a .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,15,0,.35),transparent 30%,transparent 75%,rgba(255,244,226,.0))}
+.pp-a .pp-logo{position:absolute;left:24px;top:22px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.pp-a .pp-logo i{background:#FFF4E2;color:#8A2B12}
+.pp-a .tx{position:absolute;left:34px;right:34px;top:350px}
+.pp-a .k{font:700 italic 34px/1 Playfair;color:#B3261E}
+.pp-a h3{margin:2px 0 0;font:900 64px/0.92 Playfair;color:#3B1F0E;letter-spacing:-1px}
+.pp-a .sub{margin-top:14px;font:800 11.5px Montserrat;letter-spacing:2.6px;text-transform:uppercase;color:#8A5A33;display:flex;align-items:center;gap:10px}
+.pp-a .sub::before{content:"";width:34px;height:2px;background:#B3261E}
+.pp-a .bdg{position:absolute;right:30px;top:268px;width:132px;height:132px;border-radius:50%;background:#C8322C;color:#FFF4E2;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(120,20,10,.35);transform:rotate(-10deg)}
+.pp-a .bdg::before{content:"";position:absolute;inset:6px;border-radius:50%;border:1.5px dashed rgba(255,244,226,.7)}
+.pp-a .bdg b{font:400 30px/0.95 Bebas;letter-spacing:1px}
+.pp-a .bdg span{font:800 10px Montserrat;letter-spacing:2px}
+/* B */
+.pp-b{--y:#F5B700;background:var(--y)}
+.pp-b.claro{--y:#FBE3A2}
+.pp-b .grain{position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(255,255,255,.35),transparent 60%),radial-gradient(circle at 0 0,rgba(140,60,0,.12),transparent 50%)}
+.pp-b .pp-logo{position:absolute;left:26px;top:24px;color:#3A1D06}
+.pp-b .pp-logo i{background:#3A1D06;color:var(--y)}
+.pp-b .dia{position:absolute;right:26px;top:26px;font:800 11px Montserrat;letter-spacing:2.2px;color:#3A1D06}
+.pp-b h3{position:absolute;left:0;right:0;top:58px;margin:0;text-align:center;font:400 128px/0.82 Bebas;color:#3A1D06;letter-spacing:1px}
+.pp-b h3 em{display:block;font:700 italic 40px/1 Playfair;color:#C8322C;letter-spacing:0;margin:0 0 16px}
+.pp-b .pile{position:absolute;left:112px;bottom:-40px;width:316px}
+.pp-b .stk{position:absolute;right:24px;bottom:40px;width:124px;height:124px;border-radius:50%;background:#C8322C;color:#FFF;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(12deg);box-shadow:0 8px 20px rgba(80,20,0,.3)}
+.pp-b .stk b{font:400 40px/0.9 Bebas}.pp-b .stk span{font:800 9.5px Montserrat;letter-spacing:1.6px}
+.pp-b .pr{position:absolute;left:26px;bottom:52px;padding:10px 14px;border-radius:12px;background:#3A1D06;color:var(--y);transform:rotate(-6deg)}
+.pp-b .pr small{display:block;font:800 9px Montserrat;letter-spacing:2px;color:#F7E8C8}
+.pp-b .pr b{font:900 32px/1 Fraunces}
+/* C */
+.pp-c{background:#1E120C}
+.pp-c .ph{position:absolute;inset:0}
+.pp-c .ph img{width:620px;height:620px;object-fit:cover;margin:10px 0 0 -40px}
+.pp-c .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,14,8,.96) 0%,rgba(25,14,8,.8) 36%,rgba(25,14,8,0) 62%),radial-gradient(120% 90% at 50% 60%,transparent 50%,rgba(15,8,4,.7))}
+.pp-c .tx{position:absolute;left:36px;right:36px;top:34px;color:#F6E7CF}
+.pp-c .lb{display:flex;align-items:center;gap:10px;font:800 10.5px Montserrat;letter-spacing:3px;color:#E3B566}
+.pp-c .lb::after{content:"";flex:1;height:1px;background:rgba(227,181,102,.5)}
+.pp-c h3{margin:14px 0 0;font:400 italic 64px/0.95 DMSerif;letter-spacing:-.5px}
+.pp-c h3 span{font-style:normal;color:#E3B566}
+.pp-c .pill{position:absolute;left:36px;bottom:30px;padding:10px 18px;border-radius:999px;border:1.5px solid #E3B566;color:#F6E7CF;font:800 12px Montserrat;letter-spacing:2px;background:rgba(30,18,12,.55)}
+.pp-c .pill b{color:#E3B566}
+.pp-c .pp-logo{position:absolute;right:30px;bottom:34px;color:#F6E7CF}
+.pp-c .pp-logo i{background:#E3B566;color:#1E120C}
+.pp-steam{position:absolute;pointer-events:none;width:60px;height:110px;opacity:.55;filter:blur(3px)}
+</style></head>
+<body style="margin:0;background:#333;padding:30px;display:flex;gap:30px;flex-wrap:wrap">
+<!--tela-->
+<div class="pp-set">
+<div class="pp pp-a" data-post="a">
+  <div class="ph"><img src="img/pao-toalha.png"></div>
+  <div class="pp-logo"><i>G</i>Grão Dourado</div>
+  <div class="bdg"><span>LEVE 10</span><b>PAGUE 7</b><span>SÓ SEXTA</span></div>
+  <div class="tx"><div class="k">Sexta do</div><h3>Pão de Queijo</h3><div class="sub">fornada quentinha a cada 30 min</div></div>
+</div>
+<div class="pp pp-b" data-post="b">
+  <div class="grain"></div>
+  <div class="pp-logo"><i>G</i>Grão Dourado</div><div class="dia">SEXTA · 14/11</div>
+  <h3><em>é sexta de</em>PÃO DE<br>QUEIJO</h3>
+  <img class="pile" src="img/pao-pilha.png">
+  <div class="pr"><small>A PARTIR DE</small><b>R$ 0,99</b></div>
+  <div class="stk"><span>SÓ NESTA</span><b>SEXTA</b><span>ATÉ 18H</span></div>
+</div>
+<div class="pp pp-c" data-post="c">
+  <div class="ph"><img src="img/pao-tabua.png"></div>
+  <div class="tx"><div class="lb">PROMOÇÃO DE SEXTA</div><h3>quentinho,<br><span>toda sexta.</span></h3></div>
+  <div class="pill"><b>20% OFF</b> NO QUILO</div>
+  <div class="pp-logo"><i>G</i>Grão Dourado</div>
+</div>
+</div>
+<!--/tela-->
+<style>.pp-set{display:flex;gap:30px;flex-wrap:wrap}</style>
+</body></html>

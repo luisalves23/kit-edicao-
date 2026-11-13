@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>3D · tomada brasileira NBR 14136, plugue macho e benjamim</title>
+<link rel="stylesheet" href="fonts.css">
+<style>body{margin:0;background:#0c0c0c;color:#F2EEE6;font:700 18px Mono;display:grid;grid-template-columns:repeat(2,560px);gap:20px;padding:20px}figure{margin:0}canvas{width:560px;height:560px;display:block;background:radial-gradient(ellipse at 50% 40%,#1d1d1d,#0c0c0c 70%);border-radius:18px}figcaption{margin-top:8px;color:#8f8a82}</style>
+<script src="js/three.min.js"></script><script src="js/g3d.js"></script></head><body>
+<!-- API: G3D.socket({size:2, pins:3|2, depth}) face em +z · G3D.plug({pins:3|2, color, cable, cableOut, logo, topLogo, len}) pinos em -z
+     G3D.benjamim() 3 saídas (userData.outs: frente, esquerda, direita) · Vista lateral: o plugue anda no eixo z e os pinos somem nos furos. -->
+<figure><canvas id="c1" width="1120" height="1120"></canvas><figcaption>tomada fêmea (poço sextavado, 3 furos)</figcaption></figure>
+<figure><canvas id="c2" width="1120" height="1120"></canvas><figcaption>plugue entrando pela lateral</figcaption></figure>
+<figure><canvas id="c3" width="1120" height="1120"></canvas><figcaption>encaixado (pinos escondidos nos furos)</figcaption></figure>
+<figure><canvas id="c4" width="1120" height="1120"></canvas><figcaption>benjamim com 3 plugues</figcaption></figure>
+<script>
+window.READY=false;const T=THREE,G=G3D;
+fetch('img/_paths.json').then(r=>r.json()).then(P=>{
+ const wall=st=>{const w=new T.Mesh(new T.PlaneGeometry(40,30),new T.MeshStandardMaterial({color:0x1c1b1a,roughness:.9}));w.position.z=-.34;w.receiveShadow=true;w.material.depthWrite=false;w.renderOrder=-1;st.scene.add(w);};
+ {const st=G.stage({fov:28,rim:.8,rimColor:0xffd2b8});wall(st);st.scene.add(G.socket({back:false}));st.look([1.6,1.4,6.4],[0,0,0]);st.draw(c1);}
+ const side=(k,cv)=>{const st=G.stage({fov:28,rim:.8,rimColor:0xffd2b8});wall(st);st.scene.add(G.socket({back:false}));const pl=G.plug({logo:G.logoTex(P.claude,'#D97757','#F7F3EA',.2)});pl.position.z=.12+(1-k)*1.6;st.scene.add(pl);st.look([6.2,1.8,3.4],[0,-.2,.9]);st.draw(cv);};
+ side(0,c2);side(1,c3);
+ {const st=G.stage({fov:30,rim:.8,rimColor:0xffd2b8});wall(st);st.scene.add(G.socket({size:2.3,back:false}));const bj=G.benjamim();st.scene.add(bj);bj.updateMatrixWorld(true);
+  const logos=[G.logoTex(P.claude,'#D97757','#F7F3EA',.2),G.logoTex(P.openai,'#111','#fff',.2),G.logoTex(P.google,'#4285F4','#fff',.2)],cols=[0xF2EEE6,0x141414,0xffffff];
+  bj.userData.outs.forEach((o,i)=>{const pl=G.plug({color:cols[i],cable:cols[i],topLogo:logos[i],len:1});const g=new T.Group();g.add(pl);g.position.copy(o.getWorldPosition(new T.Vector3()));g.quaternion.copy(o.getWorldQuaternion(new T.Quaternion()));pl.position.z=-.08;st.scene.add(g);});
+  st.look([.5,4.6,13.2],[0,-.35,1.3]);st.draw(c4);}
+ window.READY=true;});
+</script></body></html>

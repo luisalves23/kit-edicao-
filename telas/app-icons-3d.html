@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>3D · ícones de app (Claude e Canva)</title>
+<link rel="stylesheet" href="fonts.css">
+<style>body{margin:0;background:#0c0c0c;color:#F2EEE6;font:700 18px Mono;display:flex;gap:20px;padding:20px}figure{margin:0}canvas{width:560px;height:560px;display:block;background:radial-gradient(ellipse at 50% 40%,#1d1d1d,#0c0c0c 70%);border-radius:18px}figcaption{margin-top:8px;color:#8f8a82}</style>
+<script src="js/three.min.js"></script><script src="js/g3d.js"></script></head><body>
+<!-- API: G3D.appIcon(textura, {size:2, depth:.34, side:cor-da-lateral}) squircle do iOS com profundidade, verniz e lâmina de reflexo (liquid glass)
+     Texturas: G3D.tex('img/claude-icon.jpg') (ícone oficial do app) · G3D.canvaTex(caminhoOficial) (gradiente + marca do Canva) -->
+<figure><canvas id="c1" width="1120" height="1120"></canvas><figcaption>Claude</figcaption></figure>
+<figure><canvas id="c2" width="1120" height="1120"></canvas><figcaption>Canva</figcaption></figure>
+<script>
+window.READY=false;const G=G3D;
+fetch('img/_paths.json').then(r=>r.json()).then(P=>{
+ const show=(tex,side,cv,ry)=>{const st=G.stage({fov:24,rim:1,rimColor:0xffd2b8});st.ground(-1.15,.4);const ic=G.appIcon(tex,{side,size:2,depth:.5});ic.rotation.set(-.12,ry,0);st.scene.add(ic);st.look([0,.6,6.2],[0,0,0]);return ()=>st.draw(cv);};
+ const a=G.tex('img/claude-icon.jpg',()=>{show(a,0xc0623f,c1,.42)();show(G.canvaTex(P.canva),0x5b45e0,c2,-.42)();window.READY=true;});
+});
+</script></body></html>

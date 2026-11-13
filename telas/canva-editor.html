@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Tela · Canva editor</title>
+<link rel="stylesheet" href="fonts.css">
+<style data-tela="canva-editor">
+/* ===== Editor do Canva, tela nativa 1000x640 =====
+   Slots: [data-slot=title] · [data-slot=grid] (miniaturas de modelos .cv-tp) · [data-slot=page] (o design na página, 380x380)
+   .cv-tp.sel = modelo selecionado (borda roxa). Modelos "feios" prontos: classes .ug1 ... .ug8 */
+.t-cv{--cv:#8B3DFF;--cv2:#7D2AE8;--teal:#00C4CC;--ink:#0D1216;--muted:#5F6670;--line:#E3E5E8;--canvas:#EBECF0;
+  position:relative;width:1000px;height:640px;overflow:hidden;background:var(--canvas);font-family:Inter,system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.t-cv svg{display:block}
+.cv-top{position:absolute;left:0;right:0;top:0;height:52px;background:linear-gradient(90deg,#00C4CC 0%,#3A8DF0 42%,#7D2AE8 100%);display:flex;align-items:center;gap:6px;padding:0 12px;color:#fff;font:500 13.5px Inter}
+.cv-top .mi{padding:7px 10px;border-radius:6px}
+.cv-top .mi.ed{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.16)}
+.cv-top .ic{width:30px;height:30px;display:flex;align-items:center;justify-content:center;opacity:.95}
+.cv-top .ic svg{width:18px;height:18px}
+.cv-top .sp{flex:1}
+.cv-top .nm{font:500 13.5px Inter;opacity:.95;margin-right:10px}
+.cv-top .av{width:30px;height:30px;border-radius:50%;background:#FFB648;color:#5a3500;font:700 13px/30px Inter;text-align:center;border:2px solid rgba(255,255,255,.8)}
+.cv-top .share{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;background:#fff;color:var(--ink);font:600 13.5px Inter;margin-left:8px}
+.cv-top .share svg{width:15px;height:15px}
+.cv-top .logo{height:24px;margin:0 6px 0 2px}
+.cv-rail{position:absolute;left:0;top:52px;bottom:0;width:72px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding-top:8px;gap:2px}
+.cv-rail div{width:64px;padding:8px 0 7px;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:4px;font:500 10.5px Inter;color:var(--muted)}
+.cv-rail div svg{width:22px;height:22px}
+.cv-rail div.on{color:var(--cv);background:#F3ECFF}
+.cv-panel{position:absolute;left:72px;top:52px;bottom:0;width:316px;background:#fff;border-right:1px solid var(--line);padding:14px 14px 0}
+.cv-srch{height:40px;border-radius:8px;background:#F2F3F5;border:1px solid #E3E5E8;display:flex;align-items:center;gap:8px;padding:0 12px;font:400 13.5px Inter;color:var(--muted)}
+.cv-srch svg{width:16px;height:16px}
+.cv-tabs{display:flex;gap:18px;margin:12px 2px 10px;font:600 13.5px Inter;color:var(--muted)}
+.cv-tabs span.on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--cv);padding-bottom:6px}
+.cv-h{font:600 13px Inter;margin:2px 2px 8px;display:flex;justify-content:space-between}
+.cv-h span{font-weight:500;color:var(--muted)}
+.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cv-tp{position:relative;width:139px;height:139px;border-radius:6px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.cv-tp.sel{box-shadow:0 0 0 3px var(--cv)}
+.cv-tp .pro{position:absolute;right:6px;bottom:6px;width:18px;height:18px;border-radius:50%;background:#FFB400;color:#fff;font:900 10px/18px Inter;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.cv-tool{position:absolute;left:410px;top:64px;height:40px;border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);display:flex;align-items:center;gap:4px;padding:0 8px;font:500 13px Inter;color:var(--ink);white-space:nowrap}
+.cv-tool .f{padding:5px 10px;border:1px solid var(--line);border-radius:6px;width:122px;display:flex;justify-content:space-between}
+.cv-tool .sz{display:flex;align-items:center;border:1px solid var(--line);border-radius:6px}
+.cv-tool .sz span{padding:5px 8px}
+.cv-tool .a{font:700 15px Inter;padding:2px 8px;box-shadow:inset 0 -4px 0 #FF3EA5}
+.cv-tool .b{padding:4px 7px;font-weight:700}
+.cv-tool .sep{width:1px;height:22px;background:var(--line);margin:0 4px}
+.cv-stage{position:absolute;left:388px;right:0;top:104px;bottom:44px}
+.cv-pgl{position:absolute;left:111px;top:12px;font:500 12px Inter;color:var(--muted)}
+.cv-page{position:absolute;left:111px;top:34px;width:380px;height:380px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12);overflow:hidden}
+.cv-page .selbox{position:absolute;border:2px solid var(--cv);pointer-events:none}
+.cv-bot{position:absolute;left:388px;right:0;bottom:0;height:44px;background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 16px;font:500 12.5px Inter;color:var(--muted)}
+.cv-bot .sl{width:120px;height:4px;border-radius:2px;background:#D9DBDF;position:relative}
+.cv-bot .sl i{position:absolute;left:40%;top:-5px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px #c5c8cd,0 1px 3px rgba(0,0,0,.2)}
+.cv-bot .sp{flex:1}
+/* modelos feios e desencontrados (pra cena do "caçando modelo") */
+.ug{position:absolute;inset:0;overflow:hidden}
+.ug1{background:#39FF14}.ug1 b{position:absolute;left:8%;top:18%;font:900 italic 20cqw/0.9 Inter;color:#FF00C8;text-shadow:3px 3px 0 #2200FF;transform:rotate(-8deg)}
+.ug2{background:repeating-linear-gradient(45deg,#7B1FA2 0 12%,#FFEB3B 12% 24%)}.ug2 b{position:absolute;inset:30% 6% auto;background:#FF5722;color:#00E5FF;font:400 13cqw/1 Caveat;text-align:center;padding:4%;border:4px dotted #1B5E20}
+.ug3{background:#5D4037}.ug3 b{position:absolute;left:6%;right:6%;top:10%;font:400 18cqw/0.92 Bebas;color:#2979FF;text-align:center;letter-spacing:1px}.ug3 i{position:absolute;left:20%;right:20%;bottom:10%;height:22%;border-radius:50%;background:radial-gradient(#FFEA00,#FF6D00)}
+.ug4{background:radial-gradient(circle at 30% 30%,#FF80AB,#00BFA5)}.ug4 b{position:absolute;left:0;right:0;top:36%;text-align:center;font:900 15cqw/1 Playfair;color:#FFFF00;-webkit-text-stroke:2px #D50000}
+.ug5{background:#000}.ug5 b{position:absolute;left:4%;top:4%;font:400 9cqw/1.05 Pixel;color:#76FF03}.ug5 i{position:absolute;right:-10%;bottom:-10%;width:70%;height:70%;border-radius:50%;background:conic-gradient(red,orange,yellow,lime,cyan,blue,magenta,red)}
+.ug6{background:linear-gradient(#FFF59D,#F48FB1)}.ug6 b{position:absolute;left:8%;right:8%;top:12%;font:400 16cqw/1 Marker;color:#6200EA;transform:rotate(6deg)}.ug6 i{position:absolute;left:10%;bottom:8%;width:80%;height:26%;background:#00C853;clip-path:polygon(0 100%,10% 0,20% 100%,30% 0,40% 100%,50% 0,60% 100%,70% 0,80% 100%,90% 0,100% 100%)}
+.ug7{background:#1A237E}.ug7 b{position:absolute;left:0;right:0;top:20%;text-align:center;font:400 22cqw/1 Anton;color:#FF6F00;text-shadow:0 0 12px #FFEA00}.ug7 i{position:absolute;left:0;right:0;bottom:0;height:30%;background:repeating-linear-gradient(90deg,#F50057 0 10%,#00E676 10% 20%)}
+.ug8{background:#FAFAFA}.ug8 b{position:absolute;left:6%;top:6%;font:700 12cqw/1 Montserrat;color:#B0BEC5}.ug8 i{position:absolute;inset:40% 8% 8% 8%;background:#8D6E63;border-radius:30% 70% 40% 60%;box-shadow:12px 12px 0 #26C6DA}
+.ug{container-type:inline-size}
+</style></head>
+<body style="margin:0;background:#777;padding:30px">
+<!--tela-->
+<div class="t-cv">
+  <div class="cv-top">
+    <div class="ic"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5h12M3 9h12M3 13h12"/></svg></div>
+    <img class="logo" src="img/canva.svg" style="width:26px;height:26px">
+    <div class="mi">Arquivo</div><div class="mi">Redimensionar</div>
+    <div class="mi ed"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10.5 2.5 13.5 5.5 6 13H3v-3z"/></svg>Editando</div>
+    <div class="ic"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M7 4 3 8l4 4M3 8h8a4 4 0 0 1 0 8H9"/></svg></div>
+    <div class="ic" style="opacity:.55"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M11 4l4 4-4 4M15 8H7a4 4 0 0 0 0 8h2"/></svg></div>
+    <div class="ic"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13.5h8a3 3 0 0 0 .5-6A4.5 4.5 0 0 0 5 6.5a3.5 3.5 0 0 0 0 7z"/><path d="m7 10 1.5 1.5L11 9" stroke-linecap="round"/></svg></div>
+    <div class="sp"></div>
+    <div class="nm" data-slot="title">Post Instagram · Promoção</div>
+    <div class="av">C</div>
+    <div class="ic"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 14V9M9 14V4M14 14v-7"/></svg></div>
+    <div class="share"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M8 10V2.5M5 5.5l3-3 3 3M3 9v3.5A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V9"/></svg>Compartilhar</div>
+  </div>
+  <div class="cv-rail">
+    <div class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M3.5 9.5h17M9.5 9.5v11"/></svg>Design</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8" r="4"/><path d="M14 4h6v6h-6zM12 20l4-7 4 7z"/><rect x="4" y="14" width="6" height="6" rx="1"/></svg>Elementos</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 6V4h14v2M12 4v16M9 20h6"/></svg>Texto</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 4v6c0 4-3 7-7 8-4-1-7-4-7-8V7z"/></svg>Marca</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M7 17a4 4 0 0 1-.5-8A6 6 0 0 1 18 8a4.5 4.5 0 0 1-.5 9M12 11v9M9 14l3-3 3 3"/></svg>Uploads</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20l5-5M14 4l6 6-8 8-6-6z"/></svg>Ferramentas</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3.5 7A2 2 0 0 1 5.5 5H10l2 2.5h6.5a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></svg>Projetos</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><path d="M16.5 13.5v6M13.5 16.5h6"/></svg>Apps</div>
+  </div>
+  <div class="cv-panel">
+    <div class="cv-srch"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>Pesquisar modelos</div>
+    <div class="cv-tabs"><span class="on">Modelos</span><span>Estilos</span></div>
+    <div class="cv-h">Post para Instagram<span>Ver tudo</span></div>
+    <div class="cv-grid" data-slot="grid">
+      <div class="cv-tp"><div class="ug ug1"><b>PROMO!!</b></div></div>
+      <div class="cv-tp sel"><div class="ug ug3"><b>OFERTA DO DIA</b><i></i></div></div>
+      <div class="cv-tp"><div class="ug ug2"><b>Super liquidação</b></div><div class="pro">♛</div></div>
+      <div class="cv-tp"><div class="ug ug4"><b>Sexta!</b></div></div>
+      <div class="cv-tp"><div class="ug ug6"><b>Hoje tem!</b><i></i></div></div>
+      <div class="cv-tp"><div class="ug ug5"><b>MEGA SALE</b><i></i></div><div class="pro">♛</div></div>
+      <div class="cv-tp"><div class="ug ug7"><b>50% OFF</b><i></i></div></div>
+      <div class="cv-tp"><div class="ug ug8"><b>Novidade</b><i></i></div></div>
+    </div>
+  </div>
+  <div class="cv-tool"><div class="f">Bebas Neue <span>▾</span></div><div class="sz"><span>−</span><span style="border-left:1px solid #E3E5E8;border-right:1px solid #E3E5E8">64</span><span>+</span></div><div class="a">A</div><div class="b">B</div><div class="b" style="font-style:italic;font-weight:500">I</div><div class="b" style="text-decoration:underline;font-weight:500">U</div><div class="sep"></div><div class="b" style="font-weight:500">Efeitos</div><div class="b" style="font-weight:500">Animar</div></div>
+  <div class="cv-stage">
+    <div class="cv-pgl">Página 1 – Adicionar título</div>
+    <div class="cv-page" data-slot="page"><div class="ug ug3"><b>OFERTA DO DIA</b><i></i></div></div>
+  </div>
+  <div class="cv-bot"><span>Notas</span><span class="sp"></span><div class="sl"><i></i></div><span>42%</span><span>Páginas</span></div>
+</div>
+<!--/tela-->
+</body></html>

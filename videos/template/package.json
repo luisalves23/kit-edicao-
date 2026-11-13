@@ -1,0 +1,11 @@
+{
+  "name": "cobaia-modelo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "biblioteca": "node /mnt/project-files/telas/scripts/biblioteca.cjs",
+    "check": "npx --yes hyperframes@0.9.23 check --json",
+    "storyboard": "npx --yes hyperframes@0.9.23 snapshot --no-end --at",
+    "render": "npx --yes hyperframes@0.9.23 render -q delivery -w 4 -o render/video.mp4"
+  }
+}
